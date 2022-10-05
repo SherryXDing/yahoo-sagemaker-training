@@ -18,21 +18,21 @@
 import os
 
 # Import SMDataParallel TensorFlow2 Modules
-import smdistributed.dataparallel.tensorflow as dist
+import smdistributed.dataparallel.tensorflow as dist  ###
 import tensorflow as tf
 
 tf.random.set_seed(42)
 
 
 # SMDataParallel: Initialize
-dist.init()
+dist.init()  ###
 
 gpus = tf.config.experimental.list_physical_devices("GPU")
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
 if gpus:
     # SMDataParallel: Pin GPUs to a single SMDataParallel process [use SMDataParallel local_rank() API]
-    tf.config.experimental.set_visible_devices(gpus[dist.local_rank()], "GPU")
+    tf.config.experimental.set_visible_devices(gpus[dist.local_rank()], "GPU")  ###
 
 (mnist_images, mnist_labels), _ = tf.keras.datasets.mnist.load_data(
     path="mnist-%d.npz" % dist.rank()
@@ -60,7 +60,7 @@ loss = tf.losses.SparseCategoricalCrossentropy()
 # SMDataParallel: dist.size()
 # LR for 8 node run : 0.000125
 # LR for single node run : 0.001
-opt = tf.optimizers.Adam(0.000125 * dist.size())
+opt = tf.optimizers.Adam(0.000125 * dist.size())  ###
 
 checkpoint_dir = os.environ["SM_MODEL_DIR"]
 
@@ -74,18 +74,18 @@ def training_step(images, labels, first_batch):
         loss_value = loss(labels, probs)
 
     # SMDataParallel: Wrap tf.GradientTape with SMDataParallel's DistributedGradientTape
-    tape = dist.DistributedGradientTape(tape)
+    tape = dist.DistributedGradientTape(tape)  ###
 
     grads = tape.gradient(loss_value, mnist_model.trainable_variables)
     opt.apply_gradients(zip(grads, mnist_model.trainable_variables))
 
     if first_batch:
         # SMDataParallel: Broadcast model and optimizer variables
-        dist.broadcast_variables(mnist_model.variables, root_rank=0)
-        dist.broadcast_variables(opt.variables(), root_rank=0)
+        dist.broadcast_variables(mnist_model.variables, root_rank=0)  ###
+        dist.broadcast_variables(opt.variables(), root_rank=0)  ###
 
     # SMDataParallel: all_reduce call
-    loss_value = dist.oob_allreduce(loss_value)  # Average the loss across workers
+    loss_value = dist.oob_allreduce(loss_value)  # Average the loss across workers  ###
     return loss_value
 
 
@@ -96,5 +96,5 @@ for batch, (images, labels) in enumerate(dataset.take(10000 // dist.size())):
         print("Step #%d\tLoss: %.6f" % (batch, loss_value))
 
 # SMDataParallel: Save checkpoints only from master node.
-if dist.rank() == 0:
+if dist.rank() == 0:  ###
     mnist_model.save(os.path.join(checkpoint_dir, "1"))

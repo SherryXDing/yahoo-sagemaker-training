@@ -23,7 +23,7 @@ import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import torch.distributed as dist
+import torch.distributed as dist  ###
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.optim.lr_scheduler import StepLR
 from torchvision import datasets, transforms
@@ -32,7 +32,7 @@ from torchvision import datasets, transforms
 from model_def import Net
 
 # Import SMDataParallel PyTorch Modules
-import smdistributed.dataparallel.torch.torch_smddp
+import smdistributed.dataparallel.torch.torch_smddp  ###
 
 
 # override dependency on mirrors provided by torch vision package
@@ -171,7 +171,7 @@ def main():
     )
     
     
-    dist.init_process_group(backend="smddp")
+    dist.init_process_group(backend="smddp")  ###
     args = parser.parse_args()
     args.world_size = dist.get_world_size()
     args.rank = rank = dist.get_rank()
