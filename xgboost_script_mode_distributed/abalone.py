@@ -58,6 +58,7 @@ if __name__ == '__main__':
     parser.add_argument('--subsample', type=float)
     parser.add_argument('--objective', type=str)
     parser.add_argument('--num_round', type=int)
+    parser.add_argument('--verbosity', type=int, default=2)
     parser.add_argument('--tree_method', type=str, default="auto")
     parser.add_argument('--predictor', type=str, default="auto")
     parser.add_argument('--is_pipe', type=bool, default=False)
@@ -96,7 +97,7 @@ if __name__ == '__main__':
         'gamma': args.gamma,
         'min_child_weight': args.min_child_weight,
         'subsample': args.subsample,
-        # 'verbosity': args.verbosity,
+        'verbosity': args.verbosity,
         'objective': args.objective,
         'tree_method': args.tree_method,
         'predictor': args.predictor,
