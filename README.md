@@ -18,7 +18,17 @@ This example shows how to do SageMaker distributed training (data parallelism) w
 
 ### Session 2 Examples
 
-* [byos_pytorch]()
+* [byos_pytorch](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/byos_pytorch)
+This example takes PyTorch framework as an example to show how to bring your own script to train and deploy a model on SageMaker.
 
+* [byoc_pytorch](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/byoc_pytorch)
+This example shows how to extend AWS pre-built deep learning container (PyTorch as an example) to build your own container and bring it to SageMaker for model training.
 
-* [xgboost_script_mode_distributed]()
+* [xgboost_builtin_distributed](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/xgboost_builtin_distributed)
+This example shows doing distributed training with SageMaker built-in XgBoost algorithm, and using SageMaker automatic model tuning to tune model hyperparameters.
+
+* [xgboost_script_mode_distributed](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/xgboost_script_mode_distributed)
+This example shows how to leverage pre-built XgBoost framework container to train a XgBoost model in a distributed training fashion.
+
+* [xgboost_pyspark](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/xgboost_pyspark)
+This example shows using SageMaker pre-built Spark container to train a XgBoost model. Note: notebook is tested on SageMaker classic notebook instance.
