@@ -34,3 +34,15 @@ shows how to leverage pre-built XgBoost framework container to train a XgBoost m
 
 * [xgboost_pyspark](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/xgboost_pyspark)
 shows using SageMaker pre-built Spark container to train a XgBoost model. Note: notebook is tested on SageMaker classic notebook instance.
+
+### Session 3 Hands-on Labs
+
+* [feature_store](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/feature_store)
+Example use case with Offline Feature Store SDK and create dataset
+
+* [spark_distributed_data_processing](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/spark_distributed_data_processing)
+Example use case with Distributed Data Processing using Apache Spark and SageMaker Processing
+
+* [sagemaker_pipelines](https://github.com/SherryXDing/yahoo-sagemaker-training/tree/main/sagemaker_pipelines)
+Example use case with SageMaker Pipelines which includes Processing, Training, Evaluation, Condition and Model Registry Steps 
+ 
